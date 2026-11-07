@@ -4,21 +4,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kai's Boba Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      color: #29251f;
-      background: #fffaf2;
-      font-family: system-ui, sans-serif;
+      --baltic-blue: #22577a;
+      --tropical-teal: #38a3a5;
+      --emerald: #57cc99;
+      --light-green: #80ed99;
+      --tea-green: #c7f9cc;
+      --page: #f4fff5;
+      --surface: #ffffff;
+      --font-body: "DM Sans", sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+      color: var(--baltic-blue);
+      background: var(--page);
+      font-family: var(--font-body);
     }
 
     body {
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.65;
+    }
+
+    h1,
+    h2,
+    h3,
+    .site-name,
+    .footer-brand {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .site-nav,
+    .button {
+      font-family: var(--font-body);
     }
 
     .site-header {
-      border-bottom: 1px solid #eadbc8;
-      background: #fffaf2;
+      border-bottom: 3px solid var(--tropical-teal);
+      background: var(--baltic-blue);
     }
 
     .header-inner {
@@ -32,7 +59,7 @@
     }
 
     .site-name {
-      color: #29251f;
+      color: var(--surface);
       font-size: 1.1rem;
       font-weight: 700;
       text-decoration: none;
@@ -46,7 +73,7 @@
     }
 
     .site-nav a {
-      color: #543a29;
+      color: var(--surface);
       font-weight: 600;
       text-decoration: none;
     }
@@ -64,9 +91,22 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
+      animation: hero-enter 520ms ease-out both;
+    }
+
+    @keyframes hero-enter {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-copy {
+      max-width: 34rem;
       padding: 2rem 0;
     }
 
@@ -80,7 +120,11 @@
 
     .eyebrow {
       margin: 0 0 0.75rem;
-      color: #805d45;
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: var(--light-green);
+      color: var(--baltic-blue);
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -88,28 +132,49 @@
     }
 
     .hero h1 {
-      margin: 0 0 0.75rem;
-      max-width: 14ch;
-      font-size: clamp(2.5rem, 7vw, 4.5rem);
-      line-height: 1.05;
+      margin: 0 0 1rem;
+      max-width: 12ch;
+      color: var(--baltic-blue);
+      font-size: clamp(3rem, 8vw, 5.25rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.98;
     }
 
     .hero-copy > p:not(.eyebrow) {
-      margin: 0 0 1.5rem;
-      max-width: 38rem;
+      margin: 0 0 1.75rem;
+      max-width: 32rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
 
     .button {
       display: inline-block;
-      padding: 0.75rem 1.25rem;
+      padding: 0.85rem 1.5rem;
+      border: 2px solid var(--baltic-blue);
       border-radius: 999px;
-      background: #6f4e37;
-      color: white;
+      background: var(--baltic-blue);
+      color: var(--surface);
+      font-size: 1.05rem;
+      font-weight: 700;
       text-decoration: none;
+      box-shadow: 0 5px 14px rgb(34 87 122 / 16%);
+      transition: background-color 160ms ease, border-color 160ms ease,
+        color 160ms ease, transform 160ms ease;
     }
 
     .button:hover {
-      background: #543a29;
+      border-color: var(--tropical-teal);
+      background: var(--light-green);
+      color: var(--baltic-blue);
+      transform: scale(1.02);
+    }
+
+    .button:focus-visible,
+    .site-nav a:focus-visible,
+    .site-name:focus-visible {
+      outline: 3px solid var(--light-green);
+      outline-offset: 3px;
     }
 
     .collections {
@@ -117,9 +182,10 @@
     }
 
     .collections h2 {
-      margin: 0 0 1.5rem;
+      margin: 0 0 1.75rem;
       text-align: center;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      letter-spacing: -0.025em;
     }
 
     .visit {
@@ -127,8 +193,9 @@
     }
 
     .visit h2 {
-      margin: 0 0 1.5rem;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin: 0 0 1.75rem;
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      letter-spacing: -0.025em;
     }
 
     .collection-row {
@@ -139,20 +206,21 @@
 
     .collection {
       padding: 1.25rem 1.5rem;
-      border: 1px solid #eadbc8;
+      border: 1px solid var(--tropical-teal);
       border-radius: 1rem;
-      background: #fffdf9;
+      background: var(--surface);
     }
 
     .collection h3 {
-      margin: 0 0 0.6rem;
-      font-size: 1.1rem;
+      margin: 0 0 0.75rem;
+      color: var(--baltic-blue);
+      font-size: 1.25rem;
     }
 
     .collection ul {
       margin: 0;
       padding-left: 1.25rem;
-      color: #655b51;
+      color: var(--baltic-blue);
     }
 
     .collection li + li {
@@ -170,13 +238,14 @@
 
     .menu {
       padding: 4rem max(1.5rem, calc((100vw - 1100px) / 2));
-      background: #f4e9d8;
+      background: var(--tea-green);
     }
 
     .menu h2 {
-      margin: 0 0 2rem;
+      margin: 0 0 2.25rem;
       text-align: center;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      letter-spacing: -0.025em;
     }
 
     .menu-grid {
@@ -188,15 +257,15 @@
     .menu-item {
       overflow: hidden;
       border-radius: 1rem;
-      border: 1px solid #eadbc8;
-      background: #fffdf9;
-      box-shadow: 0 8px 22px rgb(71 48 30 / 9%);
+      border: 1px solid var(--tropical-teal);
+      background: var(--surface);
+      box-shadow: 0 8px 22px rgb(34 87 122 / 10%);
       transition: transform 160ms ease, box-shadow 160ms ease;
     }
 
     .menu-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgb(71 48 30 / 15%);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgb(34 87 122 / 18%);
     }
 
     .menu-item img {
@@ -209,7 +278,8 @@
     .menu-item h3 {
       margin: 0;
       padding: 1rem 1.1rem 0.35rem;
-      font-size: 1.05rem;
+      color: var(--baltic-blue);
+      font-size: 1.2rem;
     }
 
     .menu-item p {
@@ -221,15 +291,20 @@
     }
 
     .menu-item .price {
-      display: block;
-      padding: 0 1.1rem 1.2rem;
+      display: inline-block;
+      margin: 0 1.1rem 1.2rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: var(--light-green);
+      color: var(--baltic-blue);
       font-size: 1rem;
+      font-weight: 700;
     }
 
     .site-footer {
-      border-top: 4px solid #c99f74;
-      background: #29251f;
-      color: #fffaf2;
+      border-top: 4px solid var(--emerald);
+      background: var(--baltic-blue);
+      color: var(--surface);
       padding: 1.5rem;
     }
 
@@ -251,7 +326,7 @@
     }
 
     .footer-details {
-      color: #e4d8c9;
+      color: var(--tea-green);
       font-size: 0.9rem;
     }
 
@@ -298,6 +373,17 @@
     @media (max-width: 450px) {
       .menu-grid {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero {
+        animation: none;
+      }
+
+      .button,
+      .menu-item {
+        transition: none;
       }
     }
   </style>
